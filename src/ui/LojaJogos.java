@@ -7,6 +7,8 @@ import br.newtonpaiva.Pedido;
 import javax.swing.*;
 import java.util.ArrayList;
 
+import static javax.swing.JOptionPane.showMessageDialog;
+
 public class LojaJogos {
     public static void main(String[] args) {
 
@@ -19,6 +21,7 @@ public class LojaJogos {
         cliente.setNome(nome);
 
         Integer ingressoDeOutroJogo;
+
         do {
 
             String nomeJogo = JOptionPane.showInputDialog("Informe o nome do jogo");
@@ -39,27 +42,25 @@ public class LojaJogos {
 
         } while (ingressoDeOutroJogo == 1);
 
+
+        String mensagem = "Pedido feito para " + cliente.getNome();
         String nomeIngresso = "";
-        int posicao = 0;
+        Ingresso ing = null;
+        String mensagem1 = "";
+        int i;
 
-        for (int i = 0; 1 < pedido.getIngressos().size(); i++){
-            Ingresso ing = (Ingresso) pedido.getIngressos().get(i);
-            nomeIngresso += ing.nome;
-            if(posicao == pedido.getIngressos().size() - 2){
-                nomeIngresso += ing.nome + "e";
-            } else if (posicao == pedido.getIngressos().size() -1) {
-                nomeIngresso += ing.nome + ".";
-            } else {
-                nomeIngresso += ing.nome + ",";
-            }
-            posicao++;
-        }
-
-        JOptionPane.showMessageDialog(null, "Pedido feito para " + nomeIngresso);
-
-                //"\n" + ingresso.getQuantidade() + "ingressos: " + ingresso.nome + "\n Valor: " + );
+        for (i = 0; i < pedido.getIngressos().size(); i++) {
+            ing = (Ingresso) pedido.getIngressos().get(i);
+            if (i == pedido.getIngressos().size() - 1)
+                mensagem1 += ing.getQuantidade() + " ingressos(s) para o jogo: " + ing.nome + "\n";
+            else
+                mensagem1 += ing.getQuantidade() + " ingressos(s) para o jogo: " + ing.nome + "\n";
 
         }
+
+        String mensagem2 = mensagem + "\n" + mensagem1 + "O valor total dos ingressos é: " + pedido.calculaValor(ing);
+        showMessageDialog(null, mensagem2);
     }
+}
 
 
