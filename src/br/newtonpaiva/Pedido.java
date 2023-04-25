@@ -1,4 +1,5 @@
 package br.newtonpaiva;
+import br.newtonpaiva.Cliente;
 import br.newtonpaiva.Ingresso;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -7,7 +8,6 @@ public class Pedido {
 
     private Cliente cliente;
     private ArrayList<Ingresso> ingressos;
-
 
     public Double calculaValor(Ingresso ingresso){
         Double saldoFinal = ingresso.getValor()*ingresso.getQuantidade();
